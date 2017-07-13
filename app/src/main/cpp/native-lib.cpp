@@ -3,9 +3,9 @@
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_nebula_androidneuronsimulator_MainActivity_stringFromJNI(
+Java_com_nebula_androidneuronsimulator_MainActivity_stringFromRun(
         JNIEnv *env,
         jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
+    std::string msg = "start simulation\n";
+    return env->NewStringUTF(msg.c_str());
 }
