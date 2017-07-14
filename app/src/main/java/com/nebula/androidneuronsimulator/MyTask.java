@@ -33,12 +33,18 @@ public class MyTask extends AsyncTask<Object, Object, String> {
     @Override
     protected String doInBackground(Object... value) {
         String result_text = "";
-        try {
-            Thread.sleep((Integer)value[0]*1000);
-            result_text = runSimulation();
-        } catch (InterruptedException e){
-        }
-        return result_text;
+        long start_time;
+        long stop_time;
+        double calc_time, mflops, flop=2;
+        long loop_max = 100000000;
+
+        start_time = System.currentTimeMillis();
+        result_text = runSimulation();
+        stop_time = System.currentTimeMillis();
+
+        calc_time = (stop_time - start_time)/1000.0;
+        mflops = flop * loop_max / calc_time / 1000.0 / 1000.0;
+        return result_text + "MULADD: " + String.format("%.3f", mflops) + " MFLOPS\n";
     }
 
     @Override
