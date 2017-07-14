@@ -36,7 +36,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         long start_time;
         long stop_time;
         double calc_time, mflops, flop=2;
-        long loop_max = 100000000;
+        long loop_max = 100000000; // TODO: get loop_max from java
 
         start_time = System.currentTimeMillis();
         result_text = runSimulation();
