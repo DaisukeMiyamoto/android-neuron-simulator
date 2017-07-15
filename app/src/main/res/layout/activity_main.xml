@@ -6,48 +6,39 @@
     android:layout_height="match_parent"
     tools:context="com.nebula.androidneuronsimulator.MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Android Neuron Simulator\nver 0.1 (20170713)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintVertical_bias="0.032" />
-
-    <Button
-        android:id="@+id/run_simulation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="run"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12" />
-
     <ScrollView
-        android:layout_width="347dp"
-        android:layout_height="339dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#222222"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintBottom_toTopOf="@+id/run_simulation"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7">
+        app:layout_constraintVertical_bias="0.0">
+
 
         <TextView
             android:id="@+id/output_text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:textColor="#ffffff"
             android:padding="10dp"
+            android:text="Android Neuron Simulator\nver 0.2 (20170715)\n"
+            android:textColor="#ffffff"
+            android:textIsSelectable="true"
             android:textSize="14sp" />
     </ScrollView>
+
+    <Button
+        android:id="@+id/run_simulation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="run"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
