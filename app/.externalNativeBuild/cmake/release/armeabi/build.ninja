@@ -59,6 +59,14 @@ build CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o: CXX_COMPILER__nat
   IN_ABS = /home/nebula/IdeaProjects/android-neuron-simulator/app/src/main/cpp/native-lib.cpp
   OBJECT_DIR = CMakeFiles/native-lib.dir
   OBJECT_FILE_DIR = CMakeFiles/native-lib.dir/src/main/cpp
+build CMakeFiles/native-lib.dir/src/main/cpp/benchmark.cpp.o: CXX_COMPILER__native-lib ../../../../src/main/cpp/benchmark.cpp
+  DEFINES = -Dnative_lib_EXPORTS
+  DEP_FILE = CMakeFiles/native-lib.dir/src/main/cpp/benchmark.cpp.o.d
+  FLAGS = -isystem /home/nebula/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=15 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Os -DNDEBUG  -fPIC
+  INCLUDES = -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi/include -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward
+  IN_ABS = /home/nebula/IdeaProjects/android-neuron-simulator/app/src/main/cpp/benchmark.cpp
+  OBJECT_DIR = CMakeFiles/native-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/native-lib.dir/src/main/cpp
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target native-lib
@@ -67,7 +75,7 @@ build CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o: CXX_COMPILER__nat
 #############################################
 # Link the shared library ../../../../build/intermediates/cmake/release/obj/armeabi/libnative-lib.so
 
-build ../../../../build/intermediates/cmake/release/obj/armeabi/libnative-lib.so: CXX_SHARED_LIBRARY_LINKER__native-lib CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o | /home/nebula/Android/Sdk/ndk-bundle/platforms/android-15/arch-arm/usr/lib/liblog.so
+build ../../../../build/intermediates/cmake/release/obj/armeabi/libnative-lib.so: CXX_SHARED_LIBRARY_LINKER__native-lib CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o CMakeFiles/native-lib.dir/src/main/cpp/benchmark.cpp.o | /home/nebula/Android/Sdk/ndk-bundle/platforms/android-15/arch-arm/usr/lib/liblog.so
   LANGUAGE_COMPILE_FLAGS = -isystem /home/nebula/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=15 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv5te -mtune=xscale -msoft-float -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Os -DNDEBUG
   LINK_FLAGS = -Wl,--exclude-libs,libgcc.a --sysroot /home/nebula/Android/Sdk/ndk-bundle/platforms/android-15/arch-arm -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
   LINK_LIBRARIES = /home/nebula/Android/Sdk/ndk-bundle/platforms/android-15/arch-arm/usr/lib/liblog.so -lm "/home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi/libgnustl_static.a" "-latomic"

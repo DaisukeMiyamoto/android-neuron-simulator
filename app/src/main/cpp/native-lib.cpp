@@ -1,18 +1,8 @@
 #include <jni.h>
 #include <string>
+#include "benchmark.h"
 
 extern "C" {
-
-double benchmark(int loop_max){
-    int i;
-    double result;
-
-    for (i=0; i<loop_max; i++){
-        result += i*0.001;
-    }
-    return result;
-}
-
 
 JNIEXPORT jstring JNICALL
 Java_com_nebula_androidneuronsimulator_MyTask_runSimulation(

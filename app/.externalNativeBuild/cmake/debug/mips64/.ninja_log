@@ -1,21 +1,5 @@
 # ninja log v5
 0	46	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-46	87	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	45	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-45	85	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	45	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-45	85	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	49	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-49	90	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-1	73	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-73	114	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	45	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-45	85	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	51	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-51	93	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	46	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-46	87	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-1	47	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-47	87	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
-0	49	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
-49	89	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	3a3884949b9a325d
+0	12	0	CMakeFiles/native-lib.dir/src/main/cpp/benchmark.cpp.o	ce75d4abcc118b99
+0	50	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	4044168d2fb762a1
+50	91	0	../../../../build/intermediates/cmake/debug/obj/mips64/libnative-lib.so	230593f8e43034d2

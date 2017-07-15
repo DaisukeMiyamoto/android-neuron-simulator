@@ -24,6 +24,12 @@
 					"flags" : "  --target=mips64el-none-linux-android --gcc-toolchain=/home/nebula/Android/Sdk/ndk-bundle/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64 --sysroot=/home/nebula/Android/Sdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips64/include -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -isystem /home/nebula/Android/Sdk/ndk-bundle/sysroot/usr/include/mips64el-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fintegrated-as -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
 					"src" : "/home/nebula/IdeaProjects/android-neuron-simulator/app/src/main/cpp/native-lib.cpp",
 					"workingDirectory" : "/home/nebula/IdeaProjects/android-neuron-simulator/app/.externalNativeBuild/cmake/debug/mips64"
+				},
+				
+				{
+					"flags" : "  --target=mips64el-none-linux-android --gcc-toolchain=/home/nebula/Android/Sdk/ndk-bundle/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64 --sysroot=/home/nebula/Android/Sdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/mips64/include -isystem /home/nebula/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward  -isystem /home/nebula/Android/Sdk/ndk-bundle/sysroot/usr/include/mips64el-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fintegrated-as -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nebula/IdeaProjects/android-neuron-simulator/app/src/main/cpp/benchmark.cpp",
+					"workingDirectory" : "/home/nebula/IdeaProjects/android-neuron-simulator/app/.externalNativeBuild/cmake/debug/mips64"
 				}
 			],
 			"output" : "/home/nebula/IdeaProjects/android-neuron-simulator/app/build/intermediates/cmake/debug/obj/mips64/libnative-lib.so",
