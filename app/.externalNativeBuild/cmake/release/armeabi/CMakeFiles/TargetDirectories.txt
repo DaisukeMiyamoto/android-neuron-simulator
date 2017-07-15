@@ -1,3 +1,0 @@
-/home/nebula/IdeaProjects/android-neuron-simulator/app/.externalNativeBuild/cmake/release/armeabi/CMakeFiles/rebuild_cache.dir
-/home/nebula/IdeaProjects/android-neuron-simulator/app/.externalNativeBuild/cmake/release/armeabi/CMakeFiles/edit_cache.dir
-/home/nebula/IdeaProjects/android-neuron-simulator/app/.externalNativeBuild/cmake/release/armeabi/CMakeFiles/native-lib.dir
