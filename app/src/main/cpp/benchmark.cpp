@@ -23,10 +23,6 @@ void init_array_rand(int size, FLOAT *array, FLOAT max);
 
 double getTime()
 {
-//    struct timeval tv;
-//    gettimeofday(&tv, NULL);
-//    return(tv.tv_sec + (double)tv.tv_usec*1e-6);
-
     struct timespec ts;
     clock_gettime(CLOCK_REALTIME, &ts);
     return(ts.tv_sec + ts.tv_nsec*1e-9);
