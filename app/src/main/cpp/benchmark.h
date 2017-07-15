@@ -7,7 +7,11 @@
 
 extern "C" {
 
-double benchmark(int loop_max);
+#define TRIAD_FLOP_PER_STEP 2
+#define HH_FLOP_PER_STEP 243
+
+double benchmark_triad(int size);
+//double benchmark_hh(int max_step, int n_cell);
 
 }
 #endif //ANDROID_NEURON_SIMULATOR_BENCHMARK_H

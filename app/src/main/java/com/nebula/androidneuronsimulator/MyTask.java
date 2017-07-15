@@ -15,7 +15,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
     static {
         System.loadLibrary("native-lib");
     }
-    public native String runSimulation();
+    public native String runBenchmark();
 
 
     public MyTask(TextView textView, Button button) {
@@ -35,16 +35,14 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         String result_text = "";
         long start_time;
         long stop_time;
-        double calc_time, mflops, flop=2;
-        long loop_max = 100000000; // TODO: get loop_max from java
+        double calc_time;
 
         start_time = System.currentTimeMillis();
-        result_text = runSimulation();
+        result_text = runBenchmark();
         stop_time = System.currentTimeMillis();
 
         calc_time = (stop_time - start_time)/1000.0;
-        mflops = flop * loop_max / calc_time / 1000.0 / 1000.0;
-        return result_text + "MULADD: " + String.format("%.3f", mflops) + " MFLOPS\n";
+        return result_text + "TOTAL TIME: " + Double.toString(calc_time) + "\n";
     }
 
     @Override
