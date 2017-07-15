@@ -9,8 +9,8 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmark (
         JNIEnv *env,
         jobject /* this */) {
 
-    const int N_TRIAL = 200;
-    const int DATA_SIZE = 1000000;
+    const int N_TRIAL = 1000;
+    const int DATA_SIZE = 100000;
     double calc_time = 0.0;
     double mflops = 0.0;
     char msg_template[1024] = "TRIAD: %.2f MFLOPS (%.4f sec)\n";

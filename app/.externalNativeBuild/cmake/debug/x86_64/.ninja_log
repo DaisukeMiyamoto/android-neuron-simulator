@@ -54,3 +54,5 @@
 47	53	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	684911f58c34f8dd
 0	18	0	CMakeFiles/native-lib.dir/src/main/cpp/benchmark.cpp.o	6d5f18ca54850fa2
 18	24	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	684911f58c34f8dd
+0	44	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	c65308458c9d9af2
+44	50	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	684911f58c34f8dd
