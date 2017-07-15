@@ -23,7 +23,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:padding="10dp"
-            android:text="Android Neuron Simulator\nver 0.2 (20170715)\n"
+            android:text="Android Neuron Simulator\nver 0.3 (20170715)\n"
             android:textColor="#ffffff"
             android:textIsSelectable="true"
             android:textSize="14sp" />
