@@ -18,7 +18,9 @@ add_library( # Sets the name of the library.
 
              # Provides a relative path to your source file(s).
              src/main/cpp/native-lib.cpp
-             src/main/cpp/benchmark.cpp
+             src/main/cpp/benchmark_hh.cpp
+             src/main/cpp/benchmark_triad.cpp
+             src/main/cpp/benchmark_utils.cpp
              )
 
 # Searches for a specified prebuilt library and stores the path as a

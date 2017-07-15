@@ -15,7 +15,8 @@ public class MyTask extends AsyncTask<Object, Object, String> {
     static {
         System.loadLibrary("native-lib");
     }
-    public native String runBenchmark();
+    public native String runBenchmarkTriad();
+    public native String runBenchmarkHH();
 
 
     public MyTask(TextView textView, Button button) {
@@ -38,7 +39,8 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         double calc_time;
 
         start_time = System.currentTimeMillis();
-        result_text = runBenchmark();
+        result_text += runBenchmarkTriad();
+        result_text += runBenchmarkHH();
         stop_time = System.currentTimeMillis();
 
         calc_time = (stop_time - start_time)/1000.0;
