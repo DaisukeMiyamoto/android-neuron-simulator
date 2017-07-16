@@ -16,7 +16,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         System.loadLibrary("native-lib");
     }
     public native String checkOMP();
-    public native String runBenchmarkTriad();
+    public native String runBenchmarkTriad(int num_threads);
     public native String runBenchmarkHH();
 
 
@@ -28,7 +28,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
 
     @Override
     protected void onPreExecute() {
-        resultTextView.append("start simulation\n");
+        resultTextView.append("Start Benchmarks\n");
         runButton.setEnabled(false);
     }
 
@@ -40,19 +40,23 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         double calc_time;
 
         start_time = System.currentTimeMillis();
+        result_text += "[Conditions]\n";
         result_text += checkOMP();
-        result_text += runBenchmarkTriad();
+        result_text += "\n[TRIAD]\n";
+        result_text += runBenchmarkTriad(1);
+        result_text += runBenchmarkTriad(4);
+        result_text += "\n[Hodgkin-Huxley]\n";
         result_text += runBenchmarkHH();
         stop_time = System.currentTimeMillis();
 
         calc_time = (stop_time - start_time)/1000.0;
-        return result_text + "TOTAL TIME: " + Double.toString(calc_time) + "\n";
+        return result_text + "\nTOTAL TIME: " + Double.toString(calc_time) + "\n";
     }
 
     @Override
     protected void onPostExecute(String result){
         resultTextView.append(result);
-        resultTextView.append("finish simulation\n");
+        resultTextView.append("Finish Benchmarks\n");
         runButton.setEnabled(true);
     }
 }
