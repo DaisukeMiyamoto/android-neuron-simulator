@@ -44,7 +44,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         result_text += checkOMP();
         result_text += "\n[TRIAD]\n";
         result_text += runBenchmarkTriad(1);
-        result_text += runBenchmarkTriad(4);
+        result_text += runBenchmarkTriad(0);
         result_text += "\n[Hodgkin-Huxley]\n";
         result_text += runBenchmarkHH();
         stop_time = System.currentTimeMillis();
