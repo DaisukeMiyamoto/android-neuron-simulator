@@ -15,6 +15,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
     static {
         System.loadLibrary("native-lib");
     }
+    public native String checkOMP();
     public native String runBenchmarkTriad();
     public native String runBenchmarkHH();
 
@@ -39,6 +40,7 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         double calc_time;
 
         start_time = System.currentTimeMillis();
+        result_text += checkOMP();
         result_text += runBenchmarkTriad();
         result_text += runBenchmarkHH();
         stop_time = System.currentTimeMillis();

@@ -3,6 +3,7 @@
 //
 
 #include <stdlib.h>
+#include <omp.h>
 #include "benchmark.h"
 
 extern "C" {
@@ -10,7 +11,8 @@ extern "C" {
 void triad_core(int array_size, FLOAT *a, FLOAT *b, FLOAT *c)
 {
     FLOAT scalar = 3.141592;
-    for (int i; i<array_size; i++){
+//#pragma omp parallel for
+    for (int i=0; i<array_size; i++){
         a[i] = b[i] + scalar * c[i];
     }
 }

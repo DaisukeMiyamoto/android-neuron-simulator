@@ -7,12 +7,13 @@ android {
         applicationId "com.nebula.androidneuronsimulator"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 4
-        versionName "0.4"
+        versionCode 5
+        versionName "0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags ""
+                arguments "-DANDROID_TOOLCHAIN=gcc"
+                cppFlags "-std=c++11 -fopenmp"
             }
         }
     }

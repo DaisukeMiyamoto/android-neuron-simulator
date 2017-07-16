@@ -1,8 +1,20 @@
 #include <jni.h>
 #include <string>
+#include <omp.h>
 #include "benchmark.h"
 
 extern "C" {
+
+JNIEXPORT jstring JNICALL
+Java_com_nebula_androidneuronsimulator_MyTask_checkOMP (
+        JNIEnv *env,
+        jobject /* this */) {
+    char msg_template[1024] = "num procs=%d, max thrads=%d\n";
+    char msg_buf[1024];
+
+    sprintf(msg_buf, msg_template, omp_get_num_procs(), omp_get_max_threads());
+    return env->NewStringUTF(msg_buf);
+}
 
 JNIEXPORT jstring JNICALL
 Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkTriad (
@@ -12,7 +24,7 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkTriad (
     const int N_TRIAL = 1000;
     const int DATA_SIZE = 100000;
     double calc_time = 0.0;
-    double mflops = 0.0;
+    double mflops;
     char msg_template[1024] = "TRIAD: %.2f MFLOPS (%.4f sec)\n";
     char msg_buf[1024];
 
@@ -35,7 +47,7 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkHH (
     const int N_CELL = 1000;
     const int N_STEP = 1000;
     double calc_time = 0.0;
-    double mflops = 0.0;
+    double mflops;
     char msg_template[1024] = "HH (Euler, no table): %.2f MFLOPS (%.4f sec)\n";
     char msg_buf[1024];
 
