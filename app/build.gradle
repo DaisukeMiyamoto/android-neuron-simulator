@@ -17,7 +17,7 @@ android {
             }
         }
     }
-    applicationVariants.all { variant->
+    applicationVariants.all { variant ->
         variant.resValue "string", "versionName", variant.versionName
     }
     buildTypes {

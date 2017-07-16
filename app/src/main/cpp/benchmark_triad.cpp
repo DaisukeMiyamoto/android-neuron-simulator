@@ -3,7 +3,6 @@
 //
 
 #include <stdlib.h>
-#include <omp.h>
 #include "benchmark.h"
 
 extern "C" {

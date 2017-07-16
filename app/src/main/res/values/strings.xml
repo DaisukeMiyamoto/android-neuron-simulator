@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidNeuronSimulator</string>
+    <string name="run_button_text">RUN</string>
+    <string name="init_msg">Neuron Simulation Benchmark</string>
 </resources>

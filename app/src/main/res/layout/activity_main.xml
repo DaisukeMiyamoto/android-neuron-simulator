@@ -23,7 +23,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Android Neuron Simulator (Benchmark)\nver 0.5 (20170716)\n"
+            android:text="@string/init_msg"
             android:textColor="#ffffff"
             android:textIsSelectable="true"
             android:textSize="14sp" />
@@ -33,7 +33,7 @@
         android:id="@+id/run_simulation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="run"
+        android:text="@string/run_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
