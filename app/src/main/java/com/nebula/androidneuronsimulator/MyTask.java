@@ -1,5 +1,7 @@
 package com.nebula.androidneuronsimulator;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,9 +10,12 @@ import android.widget.TextView;
  * Created by nebula on 7/14/17.
  */
 
-public class MyTask extends AsyncTask<Object, Object, String> {
+public final class MyTask extends AsyncTask<Object, Integer, String> {
     private TextView resultTextView;
     private Button runButton;
+    private Context context;
+    private ProgressDialog dialog;
+    private int numTask;
 
     static {
         System.loadLibrary("native-lib");
@@ -20,16 +25,25 @@ public class MyTask extends AsyncTask<Object, Object, String> {
     public native String runBenchmarkHH();
 
 
-    public MyTask(TextView textView, Button button) {
+    public MyTask(Context context, TextView textView, Button button) {
         super();
         this.resultTextView = textView;
         this.runButton = button;
+        this.context = context;
+        this.numTask = 6;
     }
 
     @Override
     protected void onPreExecute() {
+
         resultTextView.append("Start Benchmarks\n");
         runButton.setEnabled(false);
+        dialog = new ProgressDialog(context);
+        dialog.setTitle("Processing...");
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setMax(numTask);
+        dialog.setProgress(0);
+        dialog.show();
     }
 
     @Override
@@ -38,19 +52,36 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         long start_time;
         long stop_time;
         double calc_time;
+        int task_finished = 0;
 
         start_time = System.currentTimeMillis();
+        publishProgress(task_finished++);
+
         result_text += "[Conditions]\n";
         result_text += checkOMP();
+        publishProgress(task_finished++);
+
         result_text += "\n[TRIAD]\n";
         result_text += runBenchmarkTriad(1);
+        publishProgress(task_finished++);
+        result_text += runBenchmarkTriad(2);
+        publishProgress(task_finished++);
         result_text += runBenchmarkTriad(0);
+        publishProgress(task_finished++);
+
         result_text += "\n[Hodgkin-Huxley]\n";
         result_text += runBenchmarkHH();
-        stop_time = System.currentTimeMillis();
+        publishProgress(task_finished++);
 
+        stop_time = System.currentTimeMillis();
         calc_time = (stop_time - start_time)/1000.0;
+
         return result_text + "\nTOTAL TIME: " + Double.toString(calc_time) + "\n";
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        dialog.setProgress(progress[0]);
     }
 
     @Override
@@ -58,6 +89,10 @@ public class MyTask extends AsyncTask<Object, Object, String> {
         resultTextView.append(result);
         resultTextView.append("Finish Benchmarks\n");
         runButton.setEnabled(true);
+
+        if(dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 }
 
