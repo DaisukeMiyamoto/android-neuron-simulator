@@ -96,10 +96,11 @@ double benchmark_hh(int max_step, int n_cell) {
 
     start_time = getTime();
     for (step = 0; step < (max_step - 1); step++) {
+
+#pragma omp parallel for
         for (i = 0; i < n_cell; i++) {
-            *(v_array) = calc_hh_c_core(v_array - n_cell, &(m_array[i]), &(n_array[i]),
+            v_array[step * n_cell + i] = calc_hh_c_core(v_array - n_cell, &(m_array[i]), &(n_array[i]),
                                            &(h_array[i]), const_table);
-            v_array++;
         }
         //printf("%d: %f %f %f %f\n", step, *(data_array-1), m_array[0], n_array[0], h_array[0]);
     }

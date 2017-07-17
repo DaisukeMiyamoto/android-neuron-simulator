@@ -22,7 +22,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> {
     }
     public native String checkOMP();
     public native String runBenchmarkTriad(int num_threads);
-    public native String runBenchmarkHH();
+    public native String runBenchmarkHH(int num_threads);
 
 
     public MyTask(Context context, TextView textView, Button button) {
@@ -55,23 +55,25 @@ final class MyTask extends AsyncTask<Object, Integer, String> {
         int task_finished = 0;
 
         start_time = System.currentTimeMillis();
-        publishProgress(task_finished++);
 
         result_text += "[Conditions]\n";
         result_text += checkOMP();
-        publishProgress(task_finished++);
 
         result_text += "\n[TRIAD]\n";
         result_text += runBenchmarkTriad(1);
-        publishProgress(task_finished++);
+        publishProgress(++task_finished);
         result_text += runBenchmarkTriad(2);
-        publishProgress(task_finished++);
+        publishProgress(++task_finished);
         result_text += runBenchmarkTriad(0);
-        publishProgress(task_finished++);
+        publishProgress(++task_finished);
 
-        result_text += "\n[Hodgkin-Huxley]\n";
-        result_text += runBenchmarkHH();
-        publishProgress(task_finished++);
+        result_text += "\n[Hodgkin-Huxley (euler, notable)]\n";
+        result_text += runBenchmarkHH(1);
+        publishProgress(++task_finished);
+        result_text += runBenchmarkHH(2);
+        publishProgress(++task_finished);
+        result_text += runBenchmarkHH(0);
+        publishProgress(++task_finished);
 
         stop_time = System.currentTimeMillis();
         calc_time = (stop_time - start_time)/1000.0;
