@@ -2,6 +2,7 @@ package com.nebula.androidneuronsimulator;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,7 +11,7 @@ import android.widget.TextView;
  * Created by nebula on 7/14/17.
  */
 
-final class MyTask extends AsyncTask<Object, Integer, String> {
+final class MyTask extends AsyncTask<Object, Integer, String> implements DialogInterface.OnCancelListener {
     private TextView resultTextView;
     private Button runButton;
     private Context context;
@@ -43,6 +44,8 @@ final class MyTask extends AsyncTask<Object, Integer, String> {
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         dialog.setMax(numTask);
         dialog.setProgress(0);
+        dialog.setCancelable(true);
+        dialog.setOnCancelListener(this);
         dialog.show();
     }
 
@@ -95,6 +98,17 @@ final class MyTask extends AsyncTask<Object, Integer, String> {
         if(dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
+    }
+
+    @Override
+    protected void onCancelled() {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onCancel(DialogInterface idialog){
+        runButton.setEnabled(true);
+        cancel(true);
     }
 }
 
