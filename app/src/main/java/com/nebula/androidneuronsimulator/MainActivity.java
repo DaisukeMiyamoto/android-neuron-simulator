@@ -25,5 +25,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //resultTextView.append(MachineInfo.getCpuInfo());
+
     }
+
+
 }

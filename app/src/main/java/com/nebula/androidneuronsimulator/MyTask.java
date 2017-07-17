@@ -10,7 +10,7 @@ import android.widget.TextView;
  * Created by nebula on 7/14/17.
  */
 
-public final class MyTask extends AsyncTask<Object, Integer, String> {
+final class MyTask extends AsyncTask<Object, Integer, String> {
     private TextView resultTextView;
     private Button runButton;
     private Context context;
