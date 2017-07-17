@@ -25,7 +25,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //resultTextView.append(MachineInfo.getCpuInfo());
+        findViewById(R.id.get_info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resultTextView.append(MachineInfo.getCpuInfo());
+            }
+        });
+
 
     }
 
