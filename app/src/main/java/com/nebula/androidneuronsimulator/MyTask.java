@@ -26,7 +26,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
     public native String runBenchmarkHH(int num_threads);
 
 
-    public MyTask(Context context, TextView textView, Button button) {
+    MyTask(Context context, TextView textView, Button button) {
         super();
         this.resultTextView = textView;
         this.runButton = button;
@@ -37,7 +37,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
     @Override
     protected void onPreExecute() {
 
-        resultTextView.append("Start Benchmarks\n");
+        resultTextView.setText("Start Benchmarks\n");
         runButton.setEnabled(false);
         dialog = new ProgressDialog(context);
         dialog.setTitle("Processing...");
@@ -107,6 +107,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
 
     @Override
     public void onCancel(DialogInterface idialog){
+        resultTextView.append("Benchmark Canceled\n");
         runButton.setEnabled(true);
         cancel(true);
     }

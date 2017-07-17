@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.get_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultTextView.append(MachineInfo.getCpuInfo());
+                resultTextView.setText(MachineInfo.getCpuInfo());
             }
         });
     }
