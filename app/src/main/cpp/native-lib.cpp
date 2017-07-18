@@ -17,6 +17,19 @@ Java_com_nebula_androidneuronsimulator_MyTask_checkOMP (
 }
 
 JNIEXPORT jstring JNICALL
+Java_com_nebula_androidneuronsimulator_MyTask_getCpuFeatures (
+        JNIEnv *env,
+        jobject /* this */) {
+    char msg_template[1024] = "Max Threads=%d\n";
+    char msg_buf[1024];
+
+
+
+    sprintf(msg_buf, msg_template, omp_get_num_procs());
+    return env->NewStringUTF(msg_buf);
+}
+
+JNIEXPORT jstring JNICALL
 Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkTriad (
         JNIEnv *env,
         jobject ,
