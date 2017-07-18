@@ -65,7 +65,7 @@ Java_com_nebula_androidneuronsimulator_MyTask_getCpuFeatures (
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkTriad (
+Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkDaxpy (
         JNIEnv *env,
         jobject ,
         jint num_threads) {
@@ -82,7 +82,7 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkTriad (
     omp_set_num_threads(num_threads);
 
     for (int i=0; i<N_TRIAL; i++) {
-        calc_time += benchmark_triad(N_STEP, DATA_SIZE);
+        calc_time += benchmark_daxpy(N_STEP, DATA_SIZE);
     }
     mflops = TRIAD_FLOP_PER_STEP * (double)DATA_SIZE * (double)N_STEP * (double)N_TRIAL / calc_time * 0.001 * 0.001;
     sprintf(msg_buf, msg_template, num_threads, omp_get_num_procs(), mflops, calc_time);
