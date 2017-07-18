@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
+ * AsyncTask for benchmark
  * Created by nebula on 7/14/17.
  */
 
@@ -17,11 +18,13 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
     private Context context;
     private ProgressDialog dialog;
     private int numTask;
+    private int processors;
 
     static {
         System.loadLibrary("native-lib");
     }
     public native String checkOMP();
+    public native String getCpuFeatures();
     public native String runBenchmarkTriad(int num_threads);
     public native String runBenchmarkHH(int num_threads);
 
@@ -32,6 +35,10 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         this.runButton = button;
         this.context = context;
         this.numTask = 6;
+        this.processors = Runtime.getRuntime().availableProcessors();
+        if (processors > 4){
+            this.numTask += 2;
+        }
     }
 
     @Override
@@ -60,6 +67,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         start_time = System.currentTimeMillis();
 
         result_text += "[Conditions]\n";
+        result_text += getCpuFeatures();
         result_text += checkOMP();
 
         result_text += "\n[TRIAD]\n";
@@ -67,16 +75,24 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         publishProgress(++task_finished);
         result_text += runBenchmarkTriad(2);
         publishProgress(++task_finished);
-        result_text += runBenchmarkTriad(0);
+        result_text += runBenchmarkTriad(4);
         publishProgress(++task_finished);
+        if (processors > 4) {
+            result_text += runBenchmarkTriad(0);
+            publishProgress(++task_finished);
+        }
 
         result_text += "\n[Hodgkin-Huxley (euler, notable)]\n";
         result_text += runBenchmarkHH(1);
         publishProgress(++task_finished);
         result_text += runBenchmarkHH(2);
         publishProgress(++task_finished);
-        result_text += runBenchmarkHH(0);
+        result_text += runBenchmarkHH(4);
         publishProgress(++task_finished);
+        if (processors > 4) {
+            result_text += runBenchmarkHH(0);
+            publishProgress(++task_finished);
+        }
 
         stop_time = System.currentTimeMillis();
         calc_time = (stop_time - start_time)/1000.0;
