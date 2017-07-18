@@ -117,4 +117,32 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkHH (
     return env->NewStringUTF(msg_buf);
 }
 
+JNIEXPORT jstring JNICALL
+Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkIz (
+        JNIEnv *env,
+        jobject,
+        jint num_threads) {
+
+    const int N_TRIAL = 10;
+    const int N_CELL = 10000;
+    const int N_STEP = 2000;
+    double calc_time = 0.0;
+    double mflops;
+    char msg_template[1024] = "%d/%d threads: %.2f MFLOPS (%.4f sec)\n";
+    char msg_buf[1024];
+
+    if(num_threads==0) { num_threads = omp_get_num_procs(); }
+    omp_set_num_threads(num_threads);
+
+    for (int i=0; i<N_TRIAL; i++) {
+        calc_time += benchmark_iz(N_STEP, N_CELL);
+    }
+
+    mflops = IZ_FLOP_PER_STEP * (double)N_CELL * (double)N_STEP * (double)N_TRIAL / calc_time * 0.001 * 0.001;
+    sprintf(msg_buf, msg_template, num_threads, omp_get_num_procs(), mflops, calc_time);
+
+    return env->NewStringUTF(msg_buf);
+}
+
+
 }
