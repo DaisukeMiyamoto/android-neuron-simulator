@@ -24,6 +24,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         System.loadLibrary("native-lib");
     }
     public native String checkOMP();
+    public native String getCpuFeatures();
     public native String runBenchmarkTriad(int num_threads);
     public native String runBenchmarkHH(int num_threads);
 
@@ -66,6 +67,7 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         start_time = System.currentTimeMillis();
 
         result_text += "[Conditions]\n";
+        result_text += getCpuFeatures();
         result_text += checkOMP();
 
         result_text += "\n[TRIAD]\n";

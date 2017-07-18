@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <omp.h>
+#include <cpu-features.h>
 #include "benchmark.h"
 
 extern "C" {
@@ -9,7 +10,7 @@ JNIEXPORT jstring JNICALL
 Java_com_nebula_androidneuronsimulator_MyTask_checkOMP (
         JNIEnv *env,
         jobject /* this */) {
-    char msg_template[1024] = "Max Threads=%d\n";
+    char msg_template[1024] = "Max Threads: %d\n";
     char msg_buf[1024];
 
     sprintf(msg_buf, msg_template, omp_get_num_procs());
@@ -20,12 +21,46 @@ JNIEXPORT jstring JNICALL
 Java_com_nebula_androidneuronsimulator_MyTask_getCpuFeatures (
         JNIEnv *env,
         jobject /* this */) {
-    char msg_template[1024] = "Max Threads=%d\n";
-    char msg_buf[1024];
+    char msg_buf[2048];
 
+    int cores;
+    AndroidCpuFamily family;
+    uint64_t features;
 
+    cores = android_getCpuCount();
+    family = android_getCpuFamily();
+    features = android_getCpuFeatures();
 
-    sprintf(msg_buf, msg_template, omp_get_num_procs());
+    sprintf(msg_buf, "CPU Cores: %d\n", cores);
+    if (family == ANDROID_CPU_FAMILY_ARM) {
+        strcat(msg_buf, "Family: ARM\n");
+        strcat(msg_buf, "Features: ");
+        if (features & ANDROID_CPU_ARM_FEATURE_NEON){
+            strcat(msg_buf, "NEON ");
+        }
+        if (features & ANDROID_CPU_ARM_FEATURE_NEON_FMA){
+            strcat(msg_buf, "NEON_FMA ");
+        }
+        strcat(msg_buf, "\n");
+    }
+    if (family == ANDROID_CPU_FAMILY_ARM64) {
+        strcat(msg_buf, "Family: ARM64\n");
+        strcat(msg_buf, "Features: ");
+        if (features & ANDROID_CPU_ARM64_FEATURE_ASIMD){
+            strcat(msg_buf, "ASIMD ");
+        }
+        if (features & ANDROID_CPU_ARM64_FEATURE_PMULL){
+            strcat(msg_buf, "PMULL ");
+        }
+        strcat(msg_buf, "\n");
+    }
+    if(family == ANDROID_CPU_FAMILY_X86) {
+        strcat(msg_buf, "Family: x86\n");
+    }
+    if(family == ANDROID_CPU_FAMILY_X86_64) {
+        strcat(msg_buf, "Family: x86_64\n");
+    }
+
     return env->NewStringUTF(msg_buf);
 }
 
