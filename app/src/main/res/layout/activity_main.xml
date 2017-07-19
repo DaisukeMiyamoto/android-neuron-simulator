@@ -48,8 +48,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#222222"
             android:text="@string/info_button_text"
-            android:textColor="#000000" />
+            android:textColor="@android:color/holo_green_light" />
 
         <Button
             android:id="@+id/run_simulation"
@@ -57,7 +58,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:backgroundTint="#222222"
             android:text="@string/run_button_text"
-            android:textColor="#222222" />
+            android:textColor="@android:color/holo_green_light" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
