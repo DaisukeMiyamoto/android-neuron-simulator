@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/init_msg"
-            android:textColor="#ffffff"
+            android:textColor="@android:color/holo_green_light"
             android:textIsSelectable="true"
             android:textSize="14sp" />
     </ScrollView>
