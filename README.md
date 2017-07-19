@@ -1,7 +1,13 @@
 # android-neuron-simulator
-neural circuit simulator with Android NDK
+neural circuit simulation benchmark with Android NDK and OpenMP
 
 ## benchmark conditions
-- Tri-Ad: A = B + const * C
+- TRIAD
 - Hodgkin-Huxley equation
 
+## TODO
+- NEON instruction mode
+
+## Screenshots
+
+![Screenshot1](/docs/img/Screenshot1.png)

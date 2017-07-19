@@ -21,9 +21,17 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.run_simulation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MyTask(resultTextView, runButton).execute(1);
+                new MyTask(MainActivity.this, resultTextView, runButton).execute(1);
             }
         });
 
+        findViewById(R.id.get_info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resultTextView.setText(MachineInfo.getBuildInfo());
+                resultTextView.append(MachineInfo.getAvailableProcessors());
+                resultTextView.append(MachineInfo.getCpuInfo());
+            }
+        });
     }
 }
