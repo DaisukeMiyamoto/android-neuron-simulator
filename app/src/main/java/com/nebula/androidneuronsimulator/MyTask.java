@@ -25,7 +25,8 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
     }
     public native String checkOMP();
     public native String getCpuFeatures();
-    public native String runBenchmarkTriad(int num_threads);
+    public native String runBenchmarkDaxpy(int num_threads);
+    public native String runBenchmarkIz(int num_threads);
     public native String runBenchmarkHH(int num_threads);
 
 
@@ -34,10 +35,10 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         this.resultTextView = textView;
         this.runButton = button;
         this.context = context;
-        this.numTask = 6;
+        this.numTask = 9;
         this.processors = Runtime.getRuntime().availableProcessors();
         if (processors > 4){
-            this.numTask += 2;
+            this.numTask += 3;
         }
     }
 
@@ -70,15 +71,27 @@ final class MyTask extends AsyncTask<Object, Integer, String> implements DialogI
         result_text += getCpuFeatures();
         result_text += checkOMP();
 
-        result_text += "\n[TRIAD]\n";
-        result_text += runBenchmarkTriad(1);
+        result_text += "\n[DAXPY]\n";
+        result_text += runBenchmarkDaxpy(1);
         publishProgress(++task_finished);
-        result_text += runBenchmarkTriad(2);
+        result_text += runBenchmarkDaxpy(2);
         publishProgress(++task_finished);
-        result_text += runBenchmarkTriad(4);
+        result_text += runBenchmarkDaxpy(4);
         publishProgress(++task_finished);
         if (processors > 4) {
-            result_text += runBenchmarkTriad(0);
+            result_text += runBenchmarkDaxpy(0);
+            publishProgress(++task_finished);
+        }
+
+        result_text += "\n[Izhikevich]\n";
+        result_text += runBenchmarkIz(1);
+        publishProgress(++task_finished);
+        result_text += runBenchmarkIz(2);
+        publishProgress(++task_finished);
+        result_text += runBenchmarkIz(4);
+        publishProgress(++task_finished);
+        if (processors > 4) {
+            result_text += runBenchmarkIz(0);
             publishProgress(++task_finished);
         }
 

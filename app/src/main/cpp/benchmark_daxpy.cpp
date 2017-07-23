@@ -7,7 +7,7 @@
 
 extern "C" {
 
-void triad_core(int array_size, FLOAT *a, FLOAT *b, FLOAT *c)
+void daxpy_core(int array_size, FLOAT *a, FLOAT *b, FLOAT *c)
 {
     const FLOAT scalar = 3.141592;
     int i;
@@ -18,7 +18,7 @@ void triad_core(int array_size, FLOAT *a, FLOAT *b, FLOAT *c)
     }
 }
 
-double benchmark_triad(int max_step, int size) {
+double benchmark_daxpy(int max_step, int size) {
     FLOAT *a;
     FLOAT *b;
     FLOAT *c;
@@ -32,7 +32,7 @@ double benchmark_triad(int max_step, int size) {
 
     start_time = getTime();
     for (int i=0; i<max_step; i++){
-        triad_core(size, a, b, c);
+        daxpy_core(size, a, b, c);
     }
     stop_time = getTime();
 
