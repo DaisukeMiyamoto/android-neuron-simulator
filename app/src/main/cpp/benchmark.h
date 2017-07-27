@@ -27,5 +27,9 @@ double benchmark_daxpy(int max_step, int size);
 double benchmark_hh(int max_step, int n_cell);
 double benchmark_iz(int max_step, int n_cell);
 
+#ifdef HAVE_NEON
+double benchmark_daxpy_neon(int max_step, int size);
+#endif
+
 }
 #endif //ANDROID_NEURON_SIMULATOR_BENCHMARK_H

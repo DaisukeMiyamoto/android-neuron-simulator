@@ -68,7 +68,8 @@ JNIEXPORT jstring JNICALL
 Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkDaxpy (
         JNIEnv *env,
         jobject ,
-        jint num_threads) {
+        jint num_threads,
+        jint neon_mode) {
 
     const int N_TRIAL = 50;
     const int N_STEP = 200;
@@ -81,8 +82,16 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkDaxpy (
     if(num_threads==0) { num_threads = omp_get_num_procs(); }
     omp_set_num_threads(num_threads);
 
-    for (int i=0; i<N_TRIAL; i++) {
-        calc_time += benchmark_daxpy(N_STEP, DATA_SIZE);
+    if (neon_mode != 1){
+        for (int i=0; i<N_TRIAL; i++) {
+            calc_time += benchmark_daxpy(N_STEP, DATA_SIZE);
+        }
+    }else{
+#ifdef HAVE_NEON
+        for (int i=0; i<N_TRIAL; i++) {
+            calc_time += benchmark_daxpy_neon(N_STEP, DATA_SIZE);
+        }
+#endif
     }
     mflops = TRIAD_FLOP_PER_STEP * (double)DATA_SIZE * (double)N_STEP * (double)N_TRIAL / calc_time * 0.001 * 0.001;
     sprintf(msg_buf, msg_template, num_threads, omp_get_num_procs(), mflops, calc_time);

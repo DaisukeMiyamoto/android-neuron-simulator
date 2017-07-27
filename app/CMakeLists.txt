@@ -8,6 +8,17 @@ cmake_minimum_required(VERSION 3.4.1)
 include(AndroidNdkModules)
 android_ndk_import_module_cpufeatures()
 
+if (${ANDROID_ABI} STREQUAL "armeabi-v7a")
+  # make a list of neon files and add neon compiling flags to them
+  set(neon_SRCS src/main/cpp/benchmark_daxpy_intrinsics.cpp)
+
+  set_property(SOURCE ${neon_SRCS}
+               APPEND_STRING PROPERTY COMPILE_FLAGS " -mfpu=neon")
+  add_definitions("-DHAVE_NEON=1")
+else ()
+  set(neon_SRCS)
+endif ()
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -25,6 +36,7 @@ add_library( # Sets the name of the library.
              src/main/cpp/benchmark_iz.cpp
              src/main/cpp/benchmark_daxpy.cpp
              src/main/cpp/benchmark_utils.cpp
+             ${neon_SRCS}
              )
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -43,6 +55,9 @@ find_library( # Sets the name of the path variable.
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
+
+#target_include_directories(native-lib PRIVATE
+#                           ${ANDROID_NDK}/sources/android/cpufeatures)
 
 target_link_libraries( # Specifies the target library.
                        native-lib
