@@ -15,12 +15,16 @@ typedef float FLOAT;
 typedef double FLOAT;
 #endif
 
+#include <android/log.h>
+//#define  D(x...)  __android_log_print(ANDROID_LOG_INFO,"benchmark",x)
+
 #define TRIAD_FLOP_PER_STEP 2
 #define IZ_FLOP_PER_STEP 14
 #define HH_FLOP_PER_STEP 243
 
 double getTime();
 void init_array(int size, FLOAT *array, FLOAT value);
+void init_rand();
 void init_array_rand(int size, FLOAT *array, FLOAT max);
 
 double benchmark_daxpy(int max_step, int size);

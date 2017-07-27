@@ -8,12 +8,13 @@ cmake_minimum_required(VERSION 3.4.1)
 include(AndroidNdkModules)
 android_ndk_import_module_cpufeatures()
 
-if (${ANDROID_ABI} STREQUAL "armeabi-v7a")
+#if (${ANDROID_ABI} STREQUAL "armeabi-v7a")
+if (${ANDROID_ABI} STREQUAL "arm64-v8a")
   # make a list of neon files and add neon compiling flags to them
   set(neon_SRCS src/main/cpp/benchmark_daxpy_intrinsics.cpp)
 
-  set_property(SOURCE ${neon_SRCS}
-               APPEND_STRING PROPERTY COMPILE_FLAGS " -mfpu=neon")
+#  set_property(SOURCE ${neon_SRCS}
+#               APPEND_STRING PROPERTY COMPILE_FLAGS " -march=aarch64")
   add_definitions("-DHAVE_NEON=1")
 else ()
   set(neon_SRCS)
@@ -21,7 +22,7 @@ endif ()
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
-# You can define multiple libraries, and CMake builds them for you.
+# You can define multiple libraries, and CMake builds them for you.`
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.

@@ -19,8 +19,10 @@ void init_array(int size, FLOAT *array, FLOAT value) {
     for (int i = 0; i < size; i++) { array[i] = value; }
 }
 
-void init_array_rand(int size, FLOAT *array, FLOAT max) {
+void init_rand() {
     srand((unsigned)time(NULL));
+}
+void init_array_rand(int size, FLOAT *array, FLOAT max) {
     for (int i = 0; i < size; i++) { array[i] = ((double)rand() / ((double)RAND_MAX + 1)) * max; }
 }
 

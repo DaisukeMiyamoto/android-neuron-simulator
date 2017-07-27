@@ -76,25 +76,30 @@ Java_com_nebula_androidneuronsimulator_MyTask_runBenchmarkDaxpy (
     const int DATA_SIZE = 100000;
     double calc_time = 0.0;
     double mflops;
-    char msg_template[1024] = "%d/%d threads: %.2f MFLOPS (%.4f sec)\n";
-    char msg_buf[1024];
+    char msg_template[1024] = "%s%d/%d threads: %.2f MFLOPS (%.4f sec)\n";
+    char msg_buf[1024] = "failed\n";
 
     if(num_threads==0) { num_threads = omp_get_num_procs(); }
     omp_set_num_threads(num_threads);
 
-    if (neon_mode != 1){
+    if (neon_mode == 0){
         for (int i=0; i<N_TRIAL; i++) {
             calc_time += benchmark_daxpy(N_STEP, DATA_SIZE);
         }
+        mflops = TRIAD_FLOP_PER_STEP * (double)DATA_SIZE * (double)N_STEP * (double)N_TRIAL / calc_time * 0.001 * 0.001;
+        sprintf(msg_buf, msg_template, "", num_threads, omp_get_num_procs(), mflops, calc_time);
+
     }else{
 #ifdef HAVE_NEON
         for (int i=0; i<N_TRIAL; i++) {
             calc_time += benchmark_daxpy_neon(N_STEP, DATA_SIZE);
         }
+        mflops = TRIAD_FLOP_PER_STEP * (double)DATA_SIZE * (double)N_STEP * (double)N_TRIAL / calc_time * 0.001 * 0.001;
+        sprintf(msg_buf, msg_template, "neon ", num_threads, omp_get_num_procs(), mflops, calc_time);
+#else
+        sprintf(msg_buf, "no NEON\n");
 #endif
     }
-    mflops = TRIAD_FLOP_PER_STEP * (double)DATA_SIZE * (double)N_STEP * (double)N_TRIAL / calc_time * 0.001 * 0.001;
-    sprintf(msg_buf, msg_template, num_threads, omp_get_num_procs(), mflops, calc_time);
 
     return env->NewStringUTF(msg_buf);
 }
